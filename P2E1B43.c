@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define password 2025
+
+
 int main(void){
 	printf("==========\n");
 	printf("++++++++++\n");
@@ -29,7 +31,9 @@ int main(void){
 	scanf("%d",&input);
 	
 	while (attempt < 3) {
-	if(password==input){
+	printf("請輸入密碼喔!(提示:今年的西元年分)\n");
+	scanf("%d",&input);
+	if(input==password){
 		printf("密碼正確\n");
 		break; 
 	} 
@@ -37,12 +41,13 @@ int main(void){
 		attempt++;
         printf("密碼錯誤！你還剩下 %d 次機會\n",3-attempt);
 	}
-    printf("已經使用完嘗試次數!\a\a\a\a\a\a\a\a\n");	
-   
-    system("CLS");
-    fflush(stdin);
+    if(attempt>=3){
+	printf("已經使用完嘗試次數!\a\a\a\a\a\a\a\a\n");	
+    return 0;
+   }
+    
 } 
-	
+	for(;;){ 
 	while(1){
     printf("---------------------------\n");
     printf("|   a.畫出直角三角形      |\n");
@@ -56,29 +61,46 @@ int main(void){
     {
     system("CLS");
     printf("請輸入一個'a'到'n'的字元");
-    while(1){
-        fflush(stdin);
-        scanf("%c",&ch1);
-        if(ch1<'a'||ch1>'n'){
-        printf("輸入錯誤,請重新輸入\n");
-        }
-    else{
+   
+}  
+  int m,o,j;
+char h;
+    if(ch=='a'||ch=='A'){
+    	system("cls");
+    	printf("輸入a到n\n");
+    	fflush(stdin);
+    	scanf("%c",&h);
+    	while(h<'a'||h>'n'){
+    		printf("重輸入\n");
+    		fflush(stdin);
+			scanf("%c",&h); 
+		}
+	
+		
+	if (h>='a'&&h<='n'){
+		for(m =h; m>='a';m--){
+         
+        for (j=h- 1; j >= 'a'; j--) {
+		printf(" ");
         
-        printf("返回主選單");
-        getch();
-        system("CLS");
-        break;
-        }
     }
-}
+    for(o=m;o<=h;o++){
+	printf("%c\n", h);
+	}
+	printf("\n");
+    
+		}
+	}
+	
   int i,j,bb;
     if(ch=='b'||ch=='B')
     {
     	printf("輸入1到9\n");
     	scanf("%d",&bb);
      for(i=1;i<=bb;i++){
-     	for(j=1;j<=9;j++)
+     	for(j=1;j<=bb;j++)
      	printf("%d *%d=%d\n",i,j,j*i);
+     	printf("\n");
 	 }
 	 printf("返回主選單");
         getch();
@@ -97,7 +119,7 @@ int main(void){
         } else {
             printf("\n輸入錯誤，請輸入y或n\n");
         }	}
-	return 0;}}
+	return 0;}}}}
 
 
 
