@@ -3,7 +3,7 @@
 #include <conio.h>
 #define password 2025
 
-
+//個人風格的畫面
 int main(void){
 	printf("==========\n");
 	printf("++++++++++\n");
@@ -35,6 +35,7 @@ int main(void){
 	scanf("%d",&input);
 	if(input==password){
 		printf("密碼正確\n");
+		  system("CLS");
 		break; 
 	} 
 	else{
@@ -47,7 +48,7 @@ int main(void){
    }
     
 } 
-	 
+	 //清除螢幕，螢幕出現主選單
 	while(1){
     printf("---------------------------\n");
     printf("|   a.畫出直角三角形      |\n");
@@ -63,6 +64,7 @@ int main(void){
     printf("請輸入一個'a'到'n'的字元");
    
 }  
+//使用者若輸入‘A’或‘a’，根據輸入字元顯現一直角三角形 
   int m,o,u;
 char h;
     if(ch=='a'||ch=='A'){
@@ -91,7 +93,8 @@ char h;
     
 		}
 	}
-	
+	/*使用者若輸入‘B’或‘b’， 產生 1*1 至
+n*n 的乘法表*/
   int i,j,bb;
     if(ch=='b'||ch=='B')
     {
@@ -105,7 +108,7 @@ char h;
         system("CLS");
         
 	}
-	
+	/*使用者若輸入‘C’或‘c’問使用者是否要繼續*/ 
 	if(ch=='c'||ch=='C'){
 	
 		printf("\nContinue? (y/n)");
@@ -123,6 +126,14 @@ char h;
         }	}
         
 	return 0;}}
+	/*在寫直角三角形的時候，我遇到滿多困難的，
+	加上用了太多變數，結果把自己搞得很混亂。
+	後來才發現，如果用函數來處理，
+	應該可以更清楚也更好整理。
+	雖然這次作業真的有點挑戰，
+	但我還是有努力撐過去，
+	也在這過程中慢慢把它完成，
+	做完的那一刻還滿有成就感的！ */ 
 
 
 
