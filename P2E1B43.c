@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 #define password 2025
 
 
@@ -27,8 +28,7 @@ int main(void){
 	
 	//密碼
 	int input,attempt=0;
-	printf("請輸入密碼喔!(提示:今年的西元年分)\n");
-	scanf("%d",&input);
+	
 	
 	while (attempt < 3) {
 	printf("請輸入密碼喔!(提示:今年的西元年分)\n");
@@ -47,7 +47,7 @@ int main(void){
    }
     
 } 
-	for(;;){ 
+	 
 	while(1){
     printf("---------------------------\n");
     printf("|   a.畫出直角三角形      |\n");
@@ -63,7 +63,7 @@ int main(void){
     printf("請輸入一個'a'到'n'的字元");
    
 }  
-  int m,o,j;
+  int m,o,u;
 char h;
     if(ch=='a'||ch=='A'){
     	system("cls");
@@ -75,12 +75,12 @@ char h;
     		fflush(stdin);
 			scanf("%c",&h); 
 		}
-	
+	}
 		
 	if (h>='a'&&h<='n'){
 		for(m =h; m>='a';m--){
          
-        for (j='a'; j <m; j++) {
+        for (u='a'; u <m; u++) {
 		printf(" ");
         
     }
@@ -102,24 +102,27 @@ char h;
      	printf("%d *%d=%d\n",i,j,j*i);
      	printf("\n");
 	 }
-	 printf("返回主選單");
-        getch();
         system("CLS");
-        break;
+        
 	}
 	
 	if(ch=='c'||ch=='C'){
-		printf("Continue? (y/n)\n");
-		if(ch=='y'||ch=='Y'){
-			
+	
+		printf("\nContinue? (y/n)");
+		fflush(stdin);
+		scanf("%c",&ch1);
+		if(ch1=='y'||ch1=='Y'){
+				system("CLS");
+		continue;
 		}
-		else if (ch == 'n' || ch == 'N') {
+		else if (ch1 == 'n' || ch1 == 'N') {
             printf("\n再見！\n");
-            return 0;
+            break;
         } else {
             printf("\n輸入錯誤，請輸入y或n\n");
         }	}
-	return 0;}}}}
+        
+	return 0;}}
 
 
 
