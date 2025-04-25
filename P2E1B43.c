@@ -80,12 +80,12 @@ char h;
 	if (h>='a'&&h<='n'){
 		for(m =h; m>='a';m--){
          
-        for (j=h- 1; j >= 'a'; j--) {
+        for (j='a'; j <m; j++) {
 		printf(" ");
         
     }
     for(o=m;o<=h;o++){
-	printf("%c\n", h);
+	printf("%c", o);
 	}
 	printf("\n");
     
