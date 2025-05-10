@@ -2,9 +2,13 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
+#include <time.h>
 #define password 2025
 #define rows 9
 #define cols 9
+
+int seat[rows][cols] = {0};  // 0 空位 1 已選 2 建議
+int initialized = 0;
 
 void availableseat();
 void arrangeforyou();
@@ -75,11 +79,11 @@ do{
     	   break;
     	   
     	case 'b':
-    	   arrangeforyou();
+    	  // arrangeforyou();
     	   break;
     	
     	case 'c':
-		   choosebyyourself();
+		   //choosebyyourself();
 		   break;
 		
 	    case 'd':
@@ -103,4 +107,44 @@ do{
 		}
 }while(1);		
 return 0;
+}
+
+void initalseat() {
+    srand(time(NULL));
+    int count = 0;
+    while(count < 10) {
+        int r=rand()%rows;
+        int c=rand()%cols;
+        if (seat[r][c]==0){
+            seat[r][c]=1;
+            count++;
+        }
+    }
+    initialized=1;
+}
+
+void availableseat(){
+    if (!initialized){
+        initalseat();
+    }
+    printf("\n   ");
+    int k;
+    for (k=0;k<cols;k++){
+        printf("%d ",k+1);
+    }
+    printf("\n");
+    int j,i;
+    for(i=0;i<rows;i++){
+        printf("%d ",rows-i);
+        
+        for(j=0;j<cols;j++){
+            if(seat[i][j]==0)printf("- ");
+            else if(seat[i][j]==1)printf("* ");
+            else if(seat[i][j]==2) printf("@ ");
+        }
+        printf("\n");
+    }
+    printf("\n請按任意鍵返回主選單...\n");
+    getch();
+    system("CLS");
 }
