@@ -79,7 +79,7 @@ do{
     	   break;
     	   
     	case 'b':
-    	  // arrangeforyou();
+    	   arrangeforyou();
     	   break;
     	
     	case 'c':
@@ -147,4 +147,66 @@ void availableseat(){
     printf("\n請按任意鍵返回主選單...\n");
     getch();
     system("CLS");
+}
+void arrangeforyou() {
+    int num,i,j,k,found=0;
+    printf("請輸入需要的座位數量(1~4): ");
+    scanf("%d",&num);
+    if (num<1||num>4) {
+        printf("輸入錯誤，請輸入1到4\n");
+        return;
+    }
+    for (i=0;i<rows;i++)
+        for (j=0;j<cols;j++)
+            if (seat[i][j]==2)seat[i][j]=0;
+
+    for(i=0;i<rows&&!found;i++){
+        for(j=0;j<=cols-num&&!found;j++){
+            int ok=1;
+            for (k=0;k<num;k++){
+                if(seat[i][j + k]!=0){
+                    ok=0;
+                    break;
+                }
+            }
+            if(ok){
+                for(k=0;k<num;k++)seat[i][j+k]=2;
+                found=1;
+            }
+        }
+    }
+
+    if (!found && num == 4) {
+        for (i = 0; i < rows - 1 && !found; i++) {
+            for (j = 0; j < cols - 1 && !found; j++) {
+                if (seat[i][j] == 0 && seat[i+1][j] == 0 &&
+                    seat[i][j+1] == 0 && seat[i+1][j+1] == 0) {
+                    seat[i][j] = seat[i+1][j] = seat[i][j+1] = seat[i+1][j+1] = 2;
+                    found = 1;
+                }
+            }
+        }
+    }
+
+    if (!found) {
+        printf("目前找不到適合的座位組合\n");
+        return;
+    }
+
+    availableseat();
+    char confirm;
+    printf("是否接受建議座位？(y/n)：");
+    scanf(" %c",&confirm);
+
+    if(confirm=='y'){
+        for(i=0;i<rows;i++)
+            for(j=0;j<cols;j++)
+                if(seat[i][j]==2)seat[i][j]=1;
+        printf("已完成座位安排！\n");
+    }else{
+        for(i=0;i<rows;i++)
+            for(j=0;j<cols;j++)
+                if(seat[i][j]==2)seat[i][j]=0;
+        printf("已取消安排，返回主選單\n");
+    }
 }
