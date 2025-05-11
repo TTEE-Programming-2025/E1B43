@@ -36,7 +36,7 @@ int main(void){
 	printf("********************\n");
 	printf("++++++++++++++++++++\n");
 	printf("====================\n");
-	printf("喵喵喵喵喵喵喵喵喵喵\n");
+	printf("\n");
 	
 	//密碼
 	int input,attempt=0;
@@ -83,7 +83,7 @@ do{
     	   break;
     	
     	case 'c':
-		   //choosebyyourself();
+		   choosebyyourself();
 		   break;
 		
 	    case 'd':
@@ -176,19 +176,20 @@ void arrangeforyou() {
         }
     }
 
-    if (!found && num == 4) {
-        for (i = 0; i < rows - 1 && !found; i++) {
-            for (j = 0; j < cols - 1 && !found; j++) {
-                if (seat[i][j] == 0 && seat[i+1][j] == 0 &&
-                    seat[i][j+1] == 0 && seat[i+1][j+1] == 0) {
-                    seat[i][j] = seat[i+1][j] = seat[i][j+1] = seat[i+1][j+1] = 2;
-                    found = 1;
+    if (!found&&num==4) {
+        for (i=0;i<rows-1&&!found;i++) {
+            for (j=0;j<cols-1&&!found;j++) {
+                if(seat[i][j]==0&&seat[i+1][j]==0&&
+                    seat[i][j+1]==0&&seat[i+1][j+1]==0) {
+                    seat[i][j]=seat[i+1][j]=seat[i][j+1]=seat[i+1][j+1]=2;
+                    found=1;
                 }
             }
         }
     }
 
-    if (!found) {
+    if (!found)
+	{
         printf("目前找不到適合的座位組合\n");
         return;
     }
@@ -209,4 +210,35 @@ void arrangeforyou() {
                 if(seat[i][j]==2)seat[i][j]=0;
         printf("已取消安排，返回主選單\n");
     }
+}
+
+void choosebyyourself(){
+    int r,c;
+    printf("請輸入座位位置（如 1-2 表示為第1列第2行）：");
+    scanf("%d-%d", &r, &c);
+    r=rows-r;
+    c=c-1;
+    if (r<0||r>=rows||c<0||c>=cols)
+	{
+        printf("輸入超出範圍，請重試\n");
+        return;
+    }
+    if (seat[r][c]!=0) {
+        printf("座位已被選取，請重選!\n");
+        return;
+    }
+    seat[r][c]=1;
+    availableseat();
+    char confirm;
+    printf("是否確認選擇此座位？(y/n)：");
+    scanf(" %c",&confirm);
+    if(confirm=='y')
+	{
+        printf("選位完成！\n");
+	}
+		else
+	{
+        seat[r][c]=0;
+        printf("取消選位，返回主選單!\n");
+     }
 }
