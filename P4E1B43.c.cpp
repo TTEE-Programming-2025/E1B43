@@ -5,6 +5,73 @@
 #include <time.h>
 #define password 2025
 
+
+typedef struct {
+    char name[50];
+    int id;
+    int math, physics, english;
+    float avg;
+} Student;
+
+Student students[10];
+int student_count = 0;
+
+void clear() {
+    system("cls");
+    }
+
+void press() {
+    printf("\n請按任意鍵返回主選單...\n");
+    while (getchar() != '\n');
+	 getchar();
+}
+
+void enter() {
+    clear();
+    int n;
+    printf("請輸入學生人數（5~10）：");
+    while (scanf("%d", &n) != 1 || n < 5 || n > 10) {
+        while (getchar() != '\n');
+        printf("錯誤！請重新輸入 5~10 的整數：");
+    }
+
+    student_count=n;
+    for (int i=0;i<n;i++)
+	{
+        printf("\n---第 %d 位學生---\n",i+1);
+
+        printf("姓名：");
+        scanf("%s",students[i].name);
+
+        printf("學號（6位整數）：");
+        while(scanf("%d",&students[i].id)!=1||students[i].id < 100000||students[i].id>999999){
+            while(getchar() != '\n');
+            printf("錯誤！請重新輸入 6 位整數學號：");
+        }
+
+        printf("數學成績（0~100）：");
+        while(scanf("%d",&students[i].math)!=1||students[i].math<0||students[i].math>100){
+            while(getchar()!='\n');
+            printf("錯誤！請重新輸入（0~100）:");
+        }
+
+        printf("物理成績（0~100）：");
+        while (scanf("%d",&students[i].physics)!=1||students[i].physics<0||students[i].physics>100){
+            while(getchar()!='\n');
+            printf("錯誤！請重新輸入（0~100）：");
+        }
+
+        printf("英文成績（0~100):");
+        while(scanf("%d", &students[i].english)!=1||students[i].english<0||students[i].english>100){
+            while(getchar()!='\n');
+             printf("錯誤！請重新輸入（0~100）：");
+        }
+
+        students[i].avg=(students[i].math+students[i].physics+students[i].english)/3.0f;
+        
+    }press();
+}
+
 // Personal style screen + Password login + Menu loop
 int main(void){
 	printf("====================\n");
@@ -68,7 +135,7 @@ int main(void){
         switch(option)
 		{        	
         	case 'a':case 'A':  
-			      	   
+			enter();      	   
         	break;
         	   
         	case 'b':case 'B':
