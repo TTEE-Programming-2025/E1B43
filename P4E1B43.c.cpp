@@ -72,6 +72,21 @@ void enter() {
     }press();
 }
 
+void display(){
+    clear();
+    if (student_count==0) {
+        printf("目前沒有任何學生資料。\n");
+    } else {
+        printf("姓名\t學號\t數學\t物理\t英文\t平均\n");
+        printf("-------------------------------------------------\n");
+        for (int i=0;i<student_count;i++) {
+            printf("%s\t%d\t%d\t%d\t%d\t%.1f\n",
+                   students[i].name,students[i].id,students[i].math,students[i].physics,students[i].english,students[i].avg);
+        }
+    }
+    press();
+}
+
 // Personal style screen + Password login + Menu loop
 int main(void){
 	printf("====================\n");
@@ -139,7 +154,7 @@ int main(void){
         	break;
         	   
         	case 'b':case 'B':
-        	   
+        	display();   
         	break;
         	
         	case 'c':case 'C':
