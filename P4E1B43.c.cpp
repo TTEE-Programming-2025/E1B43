@@ -87,6 +87,64 @@ void display(){
     press();
 }
 
+
+void search() {
+    clear();
+    if (student_count==0)
+	{
+        printf("目前沒有學生資料\n");
+        press();
+        return;
+    }
+    char t[50];
+    printf("請輸入要查詢的學生姓名：");
+    scanf("%s",t);
+
+    int found=0;
+    for (int i=0;i<student_count;i++)
+	{
+        if (strcmp(students[i].name, t)==0)
+		{
+            printf("\n姓名：%s\n學號：%d\n數學：%d\n物理：%d\n英文：%d\n平均：%.1f\n",students[i].name,students[i].id,students[i].math,students[i].physics,students[i].english,students[i].avg);
+            found=1;
+            break;
+        }
+    }
+    
+    if(!found)
+        printf("找不到該學生資料！\n");
+
+    press();
+}
+
+void rank() {
+    clear();
+    if (student_count==0) {
+        printf("目前沒有學生資料\n");
+        
+        press();
+        return;
+    }
+
+    // 氣泡
+    for (int i=0;i<student_count-1;i++){
+        for (int j=0;j<student_count-i-1;j++){
+            if (students[j].avg<students[j+1].avg){
+                Student temp=students[j];
+                students[j]=students[j+1];
+                students[j+1]=temp;
+            }
+        }
+    }
+
+    printf("排名\t姓名\t學號\t平均\n");
+    
+    for (int i=0;i<student_count;i++) {
+        printf("%d\t%s\t%d\t%.1f\n",i+1,students[i].name,students[i].id,students[i].avg);
+    }
+
+    press();
+}
 // Personal style screen + Password login + Menu loop
 int main(void){
 	printf("====================\n");
@@ -110,7 +168,7 @@ int main(void){
 	printf("====================\n");
 	printf("\n");
 	
-	// Password login (max 3 attempts)
+
 	int input,attempt=0;
 	
 	while (attempt < 3) {
@@ -158,29 +216,31 @@ int main(void){
         	break;
         	
         	case 'c':case 'C':
-		      
+		    search();  
 		    break;
 		       
 		    case 'd':case 'D':
-		      
+		    rank(); 
 		    break;   
 			
     	    case 'e':case 'E':
     	    	
-    	       printf("Continue? (y/n): \n");
-    	       scanf(" %c",&di);
-    	       if(di=='y'){
-    	            break;
-		       }
-		       else if(di=='n'){
-			        printf("Goodbye!\n");
-			        return 0;
-		       }
-		       else{
-			        printf("Invalid input, please try again.\n");
-		       }
-		       break;
-		    default :
+    	     { char c;
+                do {
+                    printf("確定離開？(y/n)：");
+                    scanf(" %c",&c);
+                    if (c=='y'||c=='Y'){
+                        printf("程式結束，再見！\n");
+                        exit(0);
+                    }else if (c=='n'||c=='N'){
+                        break;
+                    }else{
+                        printf("無效輸入，請輸入y或n\n");
+                    }
+                } while(1);
+                break;
+            }
+		    default:
 			    printf("Invalid input, please enter a to d.\n");
         }
     }while(1);		
