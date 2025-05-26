@@ -25,7 +25,7 @@ void press() {
     while (getchar() != '\n');
 	 getchar();
 }
-
+// Enter student grades 
 void enter() {
     clear();
     int n;
@@ -71,7 +71,7 @@ void enter() {
         
     }press();
 }
-
+// Display student grades 
 void display(){
     clear();
     if (student_count==0) {
@@ -87,7 +87,7 @@ void display(){
     press();
 }
 
-
+// Search for student grades
 void search() {
     clear();
     if (student_count==0)
@@ -116,7 +116,7 @@ void search() {
 
     press();
 }
-
+//  Grade ranking 
 void rank() {
     clear();
     if (student_count==0) {
@@ -126,7 +126,7 @@ void rank() {
         return;
     }
 
-    // 氣泡
+    // 冒泡排序法 
     for (int i=0;i<student_count-1;i++){
         for (int j=0;j<student_count-i-1;j++){
             if (students[j].avg<students[j+1].avg){
@@ -245,4 +245,12 @@ int main(void){
         }
     }while(1);		
     return 0; 
-	}	
+	}
+	
+	
+	// 做完這次的作業後，讓我對副函式這種寫法漸漸熟悉，也越來越喜歡用這方式撰寫。
+    // 它的優點除了比較好閱讀外，還能讓整體程式架構更清楚，方便分工與除錯。
+    // 每個副函式負責一個明確的功能，不但讓主程式更簡潔，也能讓我在開發時
+    // 專注於一個小問題，降低出錯機率。未來若要修改某一部分功能，只需要針對
+    // 對應的副函式調整即可，也提升了程式的維護性與重複使用的可能性。
+    // 因此我會持續練習並善用副函式來撰寫更有結構的程式。	
